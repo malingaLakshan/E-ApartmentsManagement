@@ -106,11 +106,9 @@ namespace E_ApartmentsManagement.UI
             nic.Text = "";
             address.Text = "";
             contact.Text = "";
-            radioButtonMale.Text = "";
-            radioButtonFemale.Text = "";
             txtEmail.Text = "";
             txtUsername.Text = "";
-            txtPassword.Text= "Password";
+            txtPassword.Text= "";
 
         }
 

@@ -26,7 +26,7 @@ namespace E_ApartmentsManagement.DAL
             try
             {
                 //SQL Query to check login
-                string sql = "SELECT * FROM user WHERE username=@username AND password=@password AND role=@role";
+                string sql = "SELECT * FROM users WHERE username=@username AND password=@password AND role=@role";
 
                 //Creating SQL Command to pass value
                 SqlCommand cmd = new SqlCommand(sql, conn);

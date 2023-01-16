@@ -20,6 +20,7 @@ namespace E_ApartmentsManagement
             Application.SetCompatibleTextRenderingDefault(false);
             // Application.Run(new frmLogin());
             Application.Run(new AdmindashBoard());
+
         }
     }
 }

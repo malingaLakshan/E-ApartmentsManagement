@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AnyStore.UI;
 
 namespace E_ApartmentsManagement.UI
 {
@@ -104,23 +105,26 @@ namespace E_ApartmentsManagement.UI
 
         private void buttonUsers_Click(object sender, EventArgs e)
         {
-            //ActivateButton(sender);
+            ActivateButton(sender);
             openChildForm(new UI.FormUsers(), sender);
         }
 
         private void buttonBuildings_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+            openChildForm(new UI.frmBuildings(), sender);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+            openChildForm(new UI.Apartment(), sender);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+            openChildForm(new UI.Class(), sender);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -169,6 +173,13 @@ namespace E_ApartmentsManagement.UI
             {
                 this.WindowState = FormWindowState.Normal;
             }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            frmLogin admin = new frmLogin();
+            admin.Show();
+            this.Hide();
         }
     }
 }
