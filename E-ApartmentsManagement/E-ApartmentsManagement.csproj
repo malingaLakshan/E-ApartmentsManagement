@@ -47,9 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ApartmentBLL.cs" />
+    <Compile Include="BLL\BuildingBLL.cs" />
+    <Compile Include="BLL\ClassBLL.cs" />
     <Compile Include="BLL\LoginBLL.cs" />
+    <Compile Include="BLL\ParkingBLL.cs" />
     <Compile Include="BLL\UserBLL.cs" />
+    <Compile Include="DAL\ApartmentDAL.cs" />
+    <Compile Include="DAL\BuildingDAL.cs" />
+    <Compile Include="DAL\ClassDAL.cs" />
     <Compile Include="DAL\LoginDAL.cs" />
+    <Compile Include="DAL\ParkingDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="ThemeColor.cs" />
     <Compile Include="Program.cs" />
@@ -71,6 +79,18 @@
     </Compile>
     <Compile Include="UI\Class.Designer.cs">
       <DependentUpon>Class.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ParkingSpace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ParkingSpace.Designer.cs">
+      <DependentUpon>ParkingSpace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UserDashboard.Designer.cs">
+      <DependentUpon>UserDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FormUsers.cs">
       <SubType>Form</SubType>
@@ -107,6 +127,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Class.resx">
       <DependentUpon>Class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ParkingSpace.resx">
+      <DependentUpon>ParkingSpace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserDashboard.resx">
+      <DependentUpon>UserDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormUsers.resx">
       <DependentUpon>FormUsers.cs</DependentUpon>

@@ -8,19 +8,17 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AnyStore.UI;
 
 namespace E_ApartmentsManagement.UI
 {
-    public partial class AdmindashBoard : Form
+    public partial class UserDashboard : Form
     {
-        //Fields
-        public String role = "";
+        public String role = "Custom";
         private Button currentButton;
         private Random random;
         private int tempIndex;
         private Form activeForm;
-        public AdmindashBoard()
+        public UserDashboard()
         {
             InitializeComponent();
             random = new Random();
@@ -104,89 +102,17 @@ namespace E_ApartmentsManagement.UI
 
         }
 
-        private void buttonUsers_Click(object sender, EventArgs e)
+
+        private void UserDashboard_Load(object sender, EventArgs e)
         {
-            ActivateButton(sender);
-            openChildForm(new UI.FormUsers(), sender);
+
         }
 
         private void buttonBuildings_Click(object sender, EventArgs e)
         {
+
             ActivateButton(sender);
             openChildForm(new UI.frmBuildings(), sender);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender);
-            openChildForm(new UI.Apartment(), sender);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender);
-            openChildForm(new UI.Class(), sender);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender);
-            openChildForm(new UI.ParkingSpace(), sender);
-        }
-
-        private void buttonCloseChildForm_Click(object sender, EventArgs e)
-        {
-            if (activeForm != null)
-            {
-                activeForm.Close();
-            }
-            Reset();
-        }
-
-        private void Reset()
-        {
-            DisableButton();
-            lblTitle.Text = "HOME";
-            panelTitleBar.BackColor = Color.FromArgb(0,150,136);
-            panelLogo.BackColor = Color.FromArgb(39,39,58);
-            currentButton = null;
-            btnCloseChildForm.Visible = false;
-        }
-
-        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnMaximize_Click(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Normal)
-            {
-                this.WindowState = FormWindowState.Maximized;
-
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Normal;
-            }
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            frmLogin admin = new frmLogin();
-            admin.Show();
-            this.Hide();
-        }
-
-        private void panelTitleBar_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

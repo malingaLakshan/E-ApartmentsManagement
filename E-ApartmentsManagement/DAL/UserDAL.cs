@@ -3,6 +3,7 @@ using System.Configuration;
 using E_ApartmentsManagement.BLL;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Data;
 
 namespace E_ApartmentsManagement.DAL
 {
@@ -61,6 +62,39 @@ namespace E_ApartmentsManagement.DAL
             }
             return isSuccess;
         }
+
+
+        public UserBLL GetIDFromUsername(string username)
+        {
+            UserBLL u = new UserBLL();
+            SqlConnection conn = new SqlConnection(myconnstrng);
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT user_id FROM users WHERE username='" + username + "'";
+
+                SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
+                conn.Open();
+
+                adapter.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    u.userId = int.Parse(dt.Rows[0]["user_id"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return u;
+        }
+
+
 
 
 

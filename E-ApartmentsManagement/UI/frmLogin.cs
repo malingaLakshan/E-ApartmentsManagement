@@ -23,7 +23,9 @@ namespace AnyStore.UI
 
         LoginBLL l = new LoginBLL();
         LoginDAL dal = new LoginDAL();
-       
+        public static string loggedIn;
+
+
 
         private void pboxClose_Click(object sender, EventArgs e)
         {
@@ -43,9 +45,9 @@ namespace AnyStore.UI
             {
                 //Login Successfull
                 MessageBox.Show("Login Successful.");
-            
+                loggedIn = l.username;
                 //Need to open Respective Forms based on User Type
-                switch(l.role)
+                switch (l.role)
                 {
                     case "Admin":
                         {
@@ -56,10 +58,11 @@ namespace AnyStore.UI
                         }
                         break;
 
-                    case "User":
+                    case "Customer":
                         {
                             //Display User Dashboard
-                            AdmindashBoard user = new AdmindashBoard();
+                            UserDashboard user = new UserDashboard();
+                            user.role = "Customer";
                     
                             user.Show();
                             this.Hide();

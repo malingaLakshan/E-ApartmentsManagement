@@ -33,10 +33,10 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
-            this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.txtRate = new System.Windows.Forms.TextBox();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.cmbCategory = new System.Windows.Forms.ComboBox();
+            this.dgvBuilding = new System.Windows.Forms.DataGridView();
+            this.txtContact = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.cmbCity = new System.Windows.Forms.ComboBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblRate = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblBuildingID = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuilding)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDelete
@@ -60,6 +60,7 @@
             this.btnDelete.TabIndex = 50;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -73,6 +74,7 @@
             this.btnUpdate.TabIndex = 49;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -94,8 +96,9 @@
             this.txtSearch.Location = new System.Drawing.Point(703, 39);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(489, 29);
+            this.txtSearch.Size = new System.Drawing.Size(619, 29);
             this.txtSearch.TabIndex = 47;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // lblSearch
             // 
@@ -108,44 +111,50 @@
             this.lblSearch.TabIndex = 46;
             this.lblSearch.Text = "Search";
             // 
-            // dgvProducts
+            // dgvBuilding
             // 
-            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(636, 88);
-            this.dgvProducts.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.RowHeadersWidth = 51;
-            this.dgvProducts.Size = new System.Drawing.Size(557, 279);
-            this.dgvProducts.TabIndex = 45;
+            this.dgvBuilding.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBuilding.Location = new System.Drawing.Point(636, 88);
+            this.dgvBuilding.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvBuilding.Name = "dgvBuilding";
+            this.dgvBuilding.RowHeadersWidth = 51;
+            this.dgvBuilding.Size = new System.Drawing.Size(686, 279);
+            this.dgvBuilding.TabIndex = 45;
+            this.dgvBuilding.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBuilding_RowHeaderMouseClick);
             // 
-            // txtRate
+            // txtContact
             // 
-            this.txtRate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRate.Location = new System.Drawing.Point(267, 337);
-            this.txtRate.Margin = new System.Windows.Forms.Padding(4);
-            this.txtRate.Name = "txtRate";
-            this.txtRate.Size = new System.Drawing.Size(297, 29);
-            this.txtRate.TabIndex = 44;
+            this.txtContact.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContact.Location = new System.Drawing.Point(267, 337);
+            this.txtContact.Margin = new System.Windows.Forms.Padding(4);
+            this.txtContact.Name = "txtContact";
+            this.txtContact.Size = new System.Drawing.Size(297, 29);
+            this.txtContact.TabIndex = 44;
             // 
-            // txtDescription
+            // txtAddress
             // 
-            this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.Location = new System.Drawing.Point(267, 194);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(297, 125);
-            this.txtDescription.TabIndex = 43;
+            this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddress.Location = new System.Drawing.Point(267, 194);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAddress.Multiline = true;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(297, 125);
+            this.txtAddress.TabIndex = 43;
             // 
-            // cmbCategory
+            // cmbCity
             // 
-            this.cmbCategory.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(267, 140);
-            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(297, 29);
-            this.cmbCategory.TabIndex = 42;
+            this.cmbCity.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCity.FormattingEnabled = true;
+            this.cmbCity.Items.AddRange(new object[] {
+            "Colombo 1",
+            "Colombo 2",
+            "Colombo 3"});
+            this.cmbCity.Location = new System.Drawing.Point(267, 140);
+            this.cmbCity.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbCity.Name = "cmbCity";
+            this.cmbCity.Size = new System.Drawing.Size(297, 29);
+            this.cmbCity.TabIndex = 42;
+            this.cmbCity.Text = "Colombo 1";
             // 
             // txtName
             // 
@@ -232,10 +241,10 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblSearch);
-            this.Controls.Add(this.dgvProducts);
-            this.Controls.Add(this.txtRate);
-            this.Controls.Add(this.txtDescription);
-            this.Controls.Add(this.cmbCategory);
+            this.Controls.Add(this.dgvBuilding);
+            this.Controls.Add(this.txtContact);
+            this.Controls.Add(this.txtAddress);
+            this.Controls.Add(this.cmbCity);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.lblRate);
@@ -245,7 +254,8 @@
             this.Controls.Add(this.lblBuildingID);
             this.Name = "frmBuildings";
             this.Text = "frmBuildings";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
+            this.Load += new System.EventHandler(this.frmBuildings_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuilding)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,10 +268,10 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblSearch;
-        private System.Windows.Forms.DataGridView dgvProducts;
-        private System.Windows.Forms.TextBox txtRate;
-        private System.Windows.Forms.TextBox txtDescription;
-        private System.Windows.Forms.ComboBox cmbCategory;
+        private System.Windows.Forms.DataGridView dgvBuilding;
+        private System.Windows.Forms.TextBox txtContact;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.ComboBox cmbCity;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label lblRate;
