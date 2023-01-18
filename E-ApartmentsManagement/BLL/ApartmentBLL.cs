@@ -29,5 +29,7 @@ namespace E_ApartmentsManagement.BLL
         public DateTime added_date { get; set; }
 
         public int added_by { get; set; }
+
+        public DateTime available_date { get; set; }
     }
 }

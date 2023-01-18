@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using E_ApartmentsManagement.BLL;
+using static System.Windows.Forms.AxHost;
 
 namespace E_ApartmentsManagement.DAL
 {
@@ -74,6 +75,40 @@ namespace E_ApartmentsManagement.DAL
             }
 
             return isSuccess;
+        }
+
+        public DataTable SearchByFilterigs(string city, int classIdValue, string apartmentStatus, DateTime dateTime)
+        {
+            //SQL Connection fro DB Connection
+            SqlConnection conn = new SqlConnection(myconnstrng);
+            //Creating DAtaTable to hold value from dAtabase
+            DataTable dt = new DataTable();
+
+            try
+            {
+                //SQL query to search product
+                string sql = "SELECT * FROM apartments WHERE location = '" + city + "' and class_type_id = '"+classIdValue+ "' and apartment_states = '"+apartmentStatus+ "'";
+                //Sql Command to execute Query
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                //SQL Data Adapter to hold the data from database temporarily
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                //Open Database Connection
+                conn.Open();
+
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dt;
         }
 
         internal DataTable Select()

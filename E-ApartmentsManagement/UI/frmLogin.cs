@@ -24,6 +24,7 @@ namespace AnyStore.UI
         LoginBLL l = new LoginBLL();
         LoginDAL dal = new LoginDAL();
         public static string loggedIn;
+        public static string role;
 
 
 
@@ -46,6 +47,7 @@ namespace AnyStore.UI
                 //Login Successfull
                 MessageBox.Show("Login Successful.");
                 loggedIn = l.username;
+                role = l.role;
                 //Need to open Respective Forms based on User Type
                 switch (l.role)
                 {
@@ -53,17 +55,24 @@ namespace AnyStore.UI
                         {
                             //Display Admin Dashboard
                             AdmindashBoard admin = new AdmindashBoard();
+                            admin.role = l.role;
                             admin.Show();
                             this.Hide();
+
+                            admin.lblDashboardUser.Text = l.username;
+                            admin.lbldashBoardRole.Text = l.role;
                         }
                         break;
 
                     case "Customer":
                         {
                             //Display User Dashboard
-                            UserDashboard user = new UserDashboard();
-                            user.role = "Customer";
-                    
+                            AdmindashBoard user = new AdmindashBoard();
+                            user.role = l.role;
+                            user.lblDashboardUser.Text = l.username;
+                            user.lbldashBoardRole.Text = l.role;
+
+
                             user.Show();
                             this.Hide();
                         }
@@ -82,6 +91,11 @@ namespace AnyStore.UI
                 //login Failed
                 MessageBox.Show("Login Failed. Try Again");
             }
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

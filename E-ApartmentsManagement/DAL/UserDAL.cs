@@ -72,7 +72,7 @@ namespace E_ApartmentsManagement.DAL
 
             try
             {
-                string sql = "SELECT user_id FROM users WHERE username='" + username + "'";
+                string sql = "SELECT * FROM users WHERE username='" + username + "'";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
                 conn.Open();
@@ -81,6 +81,15 @@ namespace E_ApartmentsManagement.DAL
                 if (dt.Rows.Count > 0)
                 {
                     u.userId = int.Parse(dt.Rows[0]["user_id"].ToString());
+                    u.firstName = dt.Rows[0]["firstname"].ToString();
+                    u.lastName = dt.Rows[0]["lastname"].ToString();
+                    u.role = dt.Rows[0]["role"].ToString();
+                    u.nic = dt.Rows[0]["nic"].ToString();
+                    u.address = dt.Rows[0]["address"].ToString();
+                    u.contact = dt.Rows[0]["contact"].ToString();
+                    u.email = dt.Rows[0]["email"].ToString();
+                    u.username = dt.Rows[0]["username"].ToString();
+                    u.gender = dt.Rows[0]["gender"].ToString();
                 }
             }
             catch (Exception ex)

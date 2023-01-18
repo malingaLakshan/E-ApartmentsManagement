@@ -18,10 +18,49 @@ namespace E_ApartmentsManagement.UI
 {
     public partial class FormUsers : Form
     {
+        String roleCome;
+        String username;
+        UserDAL UserDAL = new UserDAL();
         public FormUsers()
         {
             InitializeComponent();
-            LoadTheme();
+            AdmindashBoard admindashBoard = new AdmindashBoard();
+            roleCome=admindashBoard.role.Trim().ToString();
+            Console.WriteLine(roleCome);
+            username = admindashBoard.username.Trim().ToString();
+
+            //if role is CUSTOMER limit the access levels
+            if (roleCome.Equals("Customer"))
+            {
+                btnSave.Dispose();
+                btnUpdates.Dispose();
+                btnDelete.Dispose();
+                dataGridView1.Dispose();
+                lblSearch.Dispose();
+                txtSearch.Dispose();
+
+                UserBLL usr = UserDAL.GetIDFromUsername(username);
+                firstName.Text = usr.firstName;
+                lastName.Text = usr.lastName;
+                roleComboBox.Text = usr.role;
+                nic.Text= usr.nic;
+                address.Text = usr.address;
+                txtEmail.Text = usr.email;
+                txtUsername.Text = usr.username;
+
+                if (usr.gender.Equals("Male"))
+                {
+                    radioButtonMale.Checked = true;
+                }
+                else
+                {
+                    radioButtonMale.Checked = false;
+                }
+                
+            }
+         
+
+            // LoadTheme();
         }
 
         UserBLL u = new UserBLL();
@@ -39,9 +78,9 @@ namespace E_ApartmentsManagement.UI
                     btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
                 }
             }
-            role.ForeColor = ThemeColor.SecondaryColor;
+           /* role.ForeColor = ThemeColor.SecondaryColor;
             lblFName.ForeColor = ThemeColor.SecondaryColor;
-            lblLName.ForeColor = ThemeColor.SecondaryColor;
+            lblLName.ForeColor = ThemeColor.SecondaryColor;*/
         }
 
         private void label2_Click(object sender, EventArgs e)

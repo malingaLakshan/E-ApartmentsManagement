@@ -15,19 +15,35 @@ namespace E_ApartmentsManagement.UI
     public partial class AdmindashBoard : Form
     {
         //Fields
-        public String role = "";
+        public String role;
+        public String username;
+       // public static String username = frmLogin.loggedIn;
         private Button currentButton;
         private Random random;
         private int tempIndex;
         private Form activeForm;
         public AdmindashBoard()
         {
+         
+
             InitializeComponent();
             random = new Random();
+            role = frmLogin.role.Trim().ToString();
+            username = frmLogin.loggedIn.Trim().ToString();
+            Console.WriteLine(role);
             btnCloseChildForm.Visible = false;
             this.Text = string.Empty;
             this.ControlBox = false;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+
+            //limit the access limit to customer
+            if (role.Equals("Customer"))
+            {
+                buttonBuildings.Dispose();
+                btnClassTypes.Dispose();
+                btnParkingSpaces.Dispose();
+                button2.Text = "Apartments Lease Request";
+            }
         }
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();

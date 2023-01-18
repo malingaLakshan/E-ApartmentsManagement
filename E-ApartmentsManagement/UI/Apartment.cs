@@ -15,6 +15,7 @@ using E_ApartmentsManagement.BLL;
 using E_ApartmentsManagement.DAL;
 using static System.Windows.Forms.AxHost;
 using System.Runtime.InteropServices.ComTypes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace E_ApartmentsManagement.UI
 {
@@ -28,6 +29,11 @@ namespace E_ApartmentsManagement.UI
         ApartmentDAL apartmentDAL = new ApartmentDAL();
         ApartmentBLL apartmentBLL = new ApartmentBLL();
         UserDAL userDAL = new UserDAL();
+        ApartmentLeaseRequestBLL apartmentLeaseRequestBLL = new ApartmentLeaseRequestBLL();
+        ApartmentLeaseRequestDAL apartmentLeaseRequestDAL = new ApartmentLeaseRequestDAL();
+
+        String roleCome;
+        String username;
         public Apartment()
         {
             InitializeComponent();
@@ -45,11 +51,39 @@ namespace E_ApartmentsManagement.UI
             txtRf.ReadOnly = true;
             txtName.ReadOnly= false;
 
-            if (cmbState.Text.Equals("Available"))
+            /*    if (cmbState.Text.Equals("Available"))
+                {
+                    lblRelease.Text = "This Apartment Is Available Now";
+                }*/
+
+            //limit Customer Access
+            AdmindashBoard admindashBoard = new AdmindashBoard();
+            roleCome = admindashBoard.role.Trim().ToString();
+            Console.WriteLine(roleCome);
+            username = admindashBoard.username.Trim().ToString();
+            if (roleCome.Equals("Customer"))
             {
-                lblRelease.Text = "This Apartment Is Available Now";
+                btnAdd.Dispose();
+                btnUpdate.Dispose();
+                btnDelete.Dispose();
             }
 
+
+            //Lease button hide from Admin
+            if (!roleCome.Equals("Customer"))
+            {
+                btnRequest.Dispose();
+                lblLP.Dispose();
+                cmbLeas.Dispose();
+                lblLS.Dispose();
+                cmbLS.Dispose();
+                lblDateBuy.Dispose();
+                dateTimePickerBuy.Dispose();
+            }
+            
+
+            btnRequest.Enabled = false;
+            btnRequest.BackColor = Color.Red;
 
         }
 
@@ -266,6 +300,30 @@ namespace E_ApartmentsManagement.UI
 
             txtDescription.Text = dgvApartment.Rows[rowIndex].Cells[8].Value.ToString();
 
+            String dt = dgvApartment.Rows[rowIndex].Cells[12].Value.ToString();
+
+            /*           DateTime myDate = DateTime.ParseExact(dt, "yyyy-MM-dd HH:mm:ss,fff",
+                                                  System.Globalization.CultureInfo.InvariantCulture);*/
+
+            DateTime enteredDate = DateTime.Parse(dt);
+
+            DateTime dateTime = dateS.Value.Date;
+
+            if (dateTime> enteredDate)
+            {
+                lblRelease.Text = "This Apartment is Available To Lease";
+                btnRequest.Enabled = true;
+                btnRequest.BackColor = Color.ForestGreen;
+                
+
+            }
+            else
+            {
+                lblRelease.Text = "This Apartment is Not Available Now .Its Available On "+ enteredDate;
+                btnRequest.Enabled = false;
+                btnRequest.BackColor = Color.Red;
+            }
+
 
         }
 
@@ -286,6 +344,97 @@ namespace E_ApartmentsManagement.UI
             {
                 //Failed to Update Product
                 MessageBox.Show("Failed to Update Parking State");
+            }
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String city = cmbCityS.Text;
+            String classId = cmbClassTypeS.Text;
+            int classIdValue = 1;
+            if (classId.Equals("Class 1"))
+            {
+                classIdValue = 1;
+            }else if (classId.Equals("Class 2"))
+            {
+                classIdValue = 2;
+            }
+            else if (classId.Equals("Class 3"))
+            {
+                classIdValue = 3;
+            }
+            else if (classId.Equals("Suite"))
+            {
+                classIdValue = 4;
+            }
+
+            String apartmentStatus = cmbStatusS.Text;
+            DateTime dateTime = dateS.Value.Date;
+
+
+
+            if (city != null && classId != null)
+            {
+                //filtering Apartment
+                DataTable dt = apartmentDAL.SearchByFilterigs(city, classIdValue, apartmentStatus, dateTime);
+                dgvApartment.DataSource = dt;
+            }
+        }
+
+        private void btnRequest_Click(object sender, EventArgs e)
+        {
+            //Get All the Values from leaseRequest Form
+            apartmentLeaseRequestBLL.location = txtName.Text;
+            apartmentLeaseRequestBLL.apartmentId = int.Parse(txtID.Text);
+            apartmentLeaseRequestBLL.buildingId = int.Parse(cmdBuilding.SelectedValue.ToString());
+          //  apartmentLeaseRequestBLL.parkingSpaceId = int.Parse(cmbParking.SelectedValue.ToString());
+           // apartmentLeaseRequestBLL.classTypeId = int.Parse(cmbClassType.SelectedValue.ToString());
+            apartmentLeaseRequestBLL.leasingPieriod = cmbLeas.Text;
+            apartmentLeaseRequestBLL.leasingStatus = cmbLS.Text;
+            apartmentLeaseRequestBLL.approvalStatus = "PENDING";
+            apartmentLeaseRequestBLL.approveState = false;
+            apartmentLeaseRequestBLL.required_date = dateTimePickerBuy.Value.Date;
+            apartmentLeaseRequestBLL.added_date = DateTime.Now;
+
+
+            //Getting username of logged in user
+            string loggedUser = frmLogin.loggedIn;
+            UserBLL usr = userDAL.GetIDFromUsername(loggedUser);
+
+            apartmentLeaseRequestBLL.added_by = usr.userId;
+            apartmentLeaseRequestBLL.addedUserId = usr.userId;
+            apartmentLeaseRequestBLL.addedUserName = usr.username;
+            apartmentLeaseRequestBLL.approvedUserId = 0;
+            apartmentLeaseRequestBLL.approvedUserName = "";
+
+
+
+            //Create Boolean variable to check if the leaseRequest is added successfully or not
+            bool success = apartmentLeaseRequestDAL.Insert(apartmentLeaseRequestBLL);
+
+
+            //If the leaseRequest is inserted successfully then the value of the success will be true else it will be false
+            if (success == true)
+            {
+
+                //leaseRequest Inserted Successfully
+                MessageBox.Show("New Apartment Inserted Successfully.");
+                Clear();
+                //Refresh Data Grid View
+                DataTable dt = apartmentLeaseRequestDAL.Select();
+                dgvApartment.DataSource = dt;
+
+          
+            }
+            else
+            {
+                //FAiled to Insert leaseRequest
+                MessageBox.Show("Failed to Insert apartment Type.");
             }
         }
     }

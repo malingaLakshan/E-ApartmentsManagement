@@ -48,12 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\ApartmentBLL.cs" />
+    <Compile Include="BLL\ApartmentLeaseRequestBLL.cs" />
     <Compile Include="BLL\BuildingBLL.cs" />
     <Compile Include="BLL\ClassBLL.cs" />
     <Compile Include="BLL\LoginBLL.cs" />
     <Compile Include="BLL\ParkingBLL.cs" />
     <Compile Include="BLL\UserBLL.cs" />
     <Compile Include="DAL\ApartmentDAL.cs" />
+    <Compile Include="DAL\ApartmentLeaseRequestDAL.cs" />
     <Compile Include="DAL\BuildingDAL.cs" />
     <Compile Include="DAL\ClassDAL.cs" />
     <Compile Include="DAL\LoginDAL.cs" />
@@ -79,6 +81,12 @@
     </Compile>
     <Compile Include="UI\Class.Designer.cs">
       <DependentUpon>Class.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LeasingRequestManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\LeasingRequestManage.Designer.cs">
+      <DependentUpon>LeasingRequestManage.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ParkingSpace.cs">
       <SubType>Form</SubType>
@@ -127,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Class.resx">
       <DependentUpon>Class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LeasingRequestManage.resx">
+      <DependentUpon>LeasingRequestManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ParkingSpace.resx">
       <DependentUpon>ParkingSpace.cs</DependentUpon>
