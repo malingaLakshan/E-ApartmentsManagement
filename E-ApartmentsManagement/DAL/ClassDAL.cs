@@ -25,7 +25,10 @@ namespace E_ApartmentsManagement.DAL
             try
             {
                 //SQL Query to insert product into database
-                String sql = "INSERT INTO class_type (name, monthly_rent, max_occupent,reservation_fee,refundable_amount,bedroom_count,common_bathroom_count,attached_bathroom_count,servant_room_count,servant_toilet_count,description,active_state,added_date, added_by) VALUES (@name, @monthly_rent, @max_occupent,@reservation_fee,@refundable_amount,@bedroom_count,@common_bathroom_count,@attached_bathroom_count,@servant_room_count,@servant_toilet_count,@description,@active_state,@added_date, @added_by)";
+                String sql = "INSERT INTO class_type (name, monthly_rent, max_occupent,reservation_fee,refundable_amount,bedroom_count," +
+                    "common_bathroom_count,attached_bathroom_count,servant_room_count,servant_toilet_count,description,active_state,added_date, added_by)" +
+                    " VALUES (@name, @monthly_rent, @max_occupent,@reservation_fee,@refundable_amount,@bedroom_count,@common_bathroom_count," +
+                    "@attached_bathroom_count,@servant_room_count,@servant_toilet_count,@description,@active_state,@added_date, @added_by)";
 
                 //Creating SQL Command to pass the values
                 SqlCommand cmd = new SqlCommand(sql, conn);

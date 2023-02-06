@@ -8,6 +8,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using E_ApartmentsManagement.BLL;
+using E_ApartmentsManagement.DAL;
 
 namespace E_ApartmentsManagement.UI
 {
@@ -18,9 +20,16 @@ namespace E_ApartmentsManagement.UI
         private Random random;
         private int tempIndex;
         private Form activeForm;
+
+        
+
         public UserDashboard()
         {
             InitializeComponent();
+
+   
+
+
             random = new Random();
             btnCloseChildForm.Visible = false;
             this.Text = string.Empty;
@@ -113,6 +122,16 @@ namespace E_ApartmentsManagement.UI
 
             ActivateButton(sender);
             openChildForm(new UI.frmBuildings(), sender);
+        }
+
+        private void buttonUsers_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelDesktopPane_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

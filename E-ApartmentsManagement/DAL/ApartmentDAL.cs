@@ -29,7 +29,8 @@ namespace E_ApartmentsManagement.DAL
                 //SQL Query to insert Apartments into database
                 String sql = "INSERT INTO apartments (name, location, " +
                     "floar_area,apartment_states,building_id,parking_space_id,class_type_id,description,active_state,added_date, added_by) " +
-                    "VALUES (@name, @location, @floar_area,@apartment_states,@building_id,@parking_space_id,@class_type_id,@description,@active_state,@added_date, @added_by)";
+                    "VALUES (@name, @location, @floar_area,@apartment_states,@building_id,@parking_space_id,@class_type_id,@description,@active_state," +
+                    "@added_date, @added_by)";
 
                 //Creating SQL Command to pass the values
                 SqlCommand cmd = new SqlCommand(sql, conn);

@@ -120,6 +120,7 @@
             this.dgvBuilding.RowHeadersWidth = 51;
             this.dgvBuilding.Size = new System.Drawing.Size(686, 279);
             this.dgvBuilding.TabIndex = 45;
+            this.dgvBuilding.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBuilding_CellContentClick);
             this.dgvBuilding.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBuilding_RowHeaderMouseClick);
             // 
             // txtContact

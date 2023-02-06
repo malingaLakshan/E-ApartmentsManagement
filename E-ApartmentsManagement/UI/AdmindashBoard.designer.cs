@@ -49,14 +49,18 @@
             this.btnCloseChildForm = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelDesktopPane = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panelTitleBar.SuspendLayout();
+            this.panelDesktopPane.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelMenu.Controls.Add(this.button3);
             this.panelMenu.Controls.Add(this.button5);
             this.panelMenu.Controls.Add(this.button1);
             this.panelMenu.Controls.Add(this.btnLogout);
@@ -107,6 +111,7 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnLogout
             // 
@@ -347,11 +352,41 @@
             // 
             // panelDesktopPane
             // 
+            this.panelDesktopPane.Controls.Add(this.label2);
             this.panelDesktopPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktopPane.Location = new System.Drawing.Point(250, 100);
             this.panelDesktopPane.Name = "panelDesktopPane";
             this.panelDesktopPane.Size = new System.Drawing.Size(1526, 753);
             this.panelDesktopPane.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.LightGray;
+            this.label2.Location = new System.Drawing.Point(428, 288);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(811, 187);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "E-APARTMENTS";
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.Color.Gainsboro;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(0, 520);
+            this.button3.Name = "button3";
+            this.button3.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.button3.Size = new System.Drawing.Size(250, 60);
+            this.button3.TabIndex = 9;
+            this.button3.Text = " Lease";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // AdmindashBoard
             // 
@@ -371,6 +406,7 @@
             this.panelLogo.PerformLayout();
             this.panelTitleBar.ResumeLayout(false);
             this.panelTitleBar.PerformLayout();
+            this.panelDesktopPane.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -397,5 +433,7 @@
         private System.Windows.Forms.Button button5;
         public System.Windows.Forms.Label lblDashboardUser;
         public System.Windows.Forms.Label lbldashBoardRole;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button3;
     }
 }

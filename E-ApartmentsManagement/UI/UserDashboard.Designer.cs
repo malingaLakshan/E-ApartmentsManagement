@@ -58,6 +58,7 @@
             this.panelDesktopPane.Name = "panelDesktopPane";
             this.panelDesktopPane.Size = new System.Drawing.Size(1526, 753);
             this.panelDesktopPane.TabIndex = 5;
+            this.panelDesktopPane.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDesktopPane_Paint);
             // 
             // panelLogo
             // 
@@ -300,6 +301,7 @@
             this.buttonUsers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonUsers.UseVisualStyleBackColor = true;
+            this.buttonUsers.Click += new System.EventHandler(this.buttonUsers_Click);
             // 
             // UserDashboard
             // 

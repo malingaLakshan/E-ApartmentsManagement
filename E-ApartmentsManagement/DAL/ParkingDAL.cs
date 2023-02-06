@@ -113,7 +113,8 @@ namespace E_ApartmentsManagement.DAL
             try
             {
                 //SQL query to search product
-                string sql = "SELECT * FROM parkings WHERE id LIKE '%" + keywords + "%' OR name LIKE '%" + keywords + "%' OR description LIKE '%" + keywords + "%'";
+                string sql = "SELECT * FROM parkings WHERE id LIKE '%" + keywords + "%' OR name LIKE '%" + keywords + 
+                    "%' OR description LIKE '%" + keywords + "%'";
                 //Sql Command to execute Query
                 SqlCommand cmd = new SqlCommand(sql, conn);
 

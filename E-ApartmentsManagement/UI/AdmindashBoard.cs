@@ -204,5 +204,12 @@ namespace E_ApartmentsManagement.UI
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            openChildForm(new UI.LeasingRequestManage(), sender);
+
+        }
     }
 }

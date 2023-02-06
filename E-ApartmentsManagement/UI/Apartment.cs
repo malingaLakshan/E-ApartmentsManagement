@@ -389,11 +389,11 @@ namespace E_ApartmentsManagement.UI
         private void btnRequest_Click(object sender, EventArgs e)
         {
             //Get All the Values from leaseRequest Form
-            apartmentLeaseRequestBLL.location = txtName.Text;
+            apartmentLeaseRequestBLL.location = txtLocation.Text;
             apartmentLeaseRequestBLL.apartmentId = int.Parse(txtID.Text);
             apartmentLeaseRequestBLL.buildingId = int.Parse(cmdBuilding.SelectedValue.ToString());
-          //  apartmentLeaseRequestBLL.parkingSpaceId = int.Parse(cmbParking.SelectedValue.ToString());
-           // apartmentLeaseRequestBLL.classTypeId = int.Parse(cmbClassType.SelectedValue.ToString());
+            apartmentLeaseRequestBLL.parkingSpaceId = int.Parse(cmbParking.SelectedValue.ToString());
+            apartmentLeaseRequestBLL.classTypeId = int.Parse(cmbClassType.SelectedValue.ToString());
             apartmentLeaseRequestBLL.leasingPieriod = cmbLeas.Text;
             apartmentLeaseRequestBLL.leasingStatus = cmbLS.Text;
             apartmentLeaseRequestBLL.approvalStatus = "PENDING";
@@ -436,6 +436,16 @@ namespace E_ApartmentsManagement.UI
                 //FAiled to Insert leaseRequest
                 MessageBox.Show("Failed to Insert apartment Type.");
             }
+        }
+
+        private void dgvApartment_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

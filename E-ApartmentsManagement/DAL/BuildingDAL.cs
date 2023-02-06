@@ -28,7 +28,8 @@ namespace E_ApartmentsManagement.DAL
             try
             {
                 //SQL Query to insert building into database
-                String sql = "INSERT INTO buildings (name, city, address, contact, perches, added_by, added_date) VALUES (@name, @city, @address, @contact, @perches, @added_by, @added_date)";
+                String sql = "INSERT INTO buildings (name, city, address, contact, perches, added_by, added_date) VALUES" +
+                    " (@name, @city, @address, @contact, @perches, @added_by, @added_date)";
 
                 //Creating SQL Command to pass the values
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -115,7 +116,8 @@ namespace E_ApartmentsManagement.DAL
             try
             {
                 //SQL query to search product
-                string sql = "SELECT * FROM buildings WHERE id LIKE '%" + keywords + "%' OR name LIKE '%" + keywords + "%' OR city LIKE '%" + keywords + "%'";
+                string sql = "SELECT * FROM buildings WHERE id LIKE '%" + keywords + "%' OR name LIKE '%" + keywords + "%' OR city LIKE '%" + 
+                    keywords + "%'";
                 //Sql Command to execute Query
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
@@ -150,7 +152,8 @@ namespace E_ApartmentsManagement.DAL
             try
             {
                 //SQL Query to Update Data in database
-                String sql = "UPDATE buildings SET name=@name, city=@city, address=@address, contact=@contact, perches=@perches, added_by=@added_by, added_date=@added_date WHERE id=@id";
+                String sql = "UPDATE buildings SET name=@name, city=@city, address=@address, contact=@contact," +
+                    " perches=@perches, added_by=@added_by, added_date=@added_date WHERE id=@id";
              
                 //Create SQL Cmmand to pass the value to query
                 SqlCommand cmd = new SqlCommand(sql, conn);

@@ -104,6 +104,7 @@
             this.btnUpdate.TabIndex = 33;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -128,6 +129,7 @@
             this.dgvApartment.RowHeadersWidth = 51;
             this.dgvApartment.Size = new System.Drawing.Size(917, 451);
             this.dgvApartment.TabIndex = 29;
+            this.dgvApartment.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvApartment_CellContentClick);
             this.dgvApartment.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvApartment_RowHeaderMouseClick);
             // 
             // cmbParking
@@ -574,16 +576,11 @@
             this.cmbLeas.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLeas.FormattingEnabled = true;
             this.cmbLeas.Items.AddRange(new object[] {
-            "1 YEAR",
-            "2 YEAR",
-            "3 YEAR",
-            "4 YEAR",
-            "5 YEAR",
-            "6 YEAR",
-            "7 YEAR",
-            "8 YEAR",
-            "9 YEAR",
-            "10 YEAR"});
+            "1 ",
+            "2 ",
+            "3 ",
+            "4 ",
+            "5 "});
             this.cmbLeas.Location = new System.Drawing.Point(204, 610);
             this.cmbLeas.Margin = new System.Windows.Forms.Padding(4);
             this.cmbLeas.Name = "cmbLeas";

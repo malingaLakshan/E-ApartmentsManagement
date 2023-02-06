@@ -31,15 +31,13 @@
             this.btnRequest = new System.Windows.Forms.Button();
             this.dateS = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.lblDescription = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblBuildingID = new System.Windows.Forms.Label();
-            this.dgvApartment = new System.Windows.Forms.DataGridView();
+            this.dgvRequests = new System.Windows.Forms.DataGridView();
             this.cmbClassTypeS = new System.Windows.Forms.ComboBox();
             this.cmbClassType = new System.Windows.Forms.ComboBox();
             this.cmbCityS = new System.Windows.Forms.ComboBox();
@@ -53,7 +51,6 @@
             this.txtFa = new System.Windows.Forms.TextBox();
             this.txtRf = new System.Windows.Forms.TextBox();
             this.txtMO = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,10 +59,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblCategory = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblProductID = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvApartment)).BeginInit();
+            this.dtReq = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnLease = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRequests)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRequest
@@ -76,8 +77,9 @@
             this.btnRequest.Name = "btnRequest";
             this.btnRequest.Size = new System.Drawing.Size(917, 71);
             this.btnRequest.TabIndex = 88;
-            this.btnRequest.Text = "Update Lease Status";
+            this.btnRequest.Text = "UPDATE LEASE STATE";
             this.btnRequest.UseVisualStyleBackColor = false;
+            this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
             // 
             // dateS
             // 
@@ -98,27 +100,6 @@
             this.button1.TabIndex = 86;
             this.button1.Text = "ADVANCED SEARCH";
             this.button1.UseVisualStyleBackColor = false;
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.Location = new System.Drawing.Point(200, 534);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(297, 75);
-            this.txtDescription.TabIndex = 85;
-            // 
-            // lblDescription
-            // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.Location = new System.Drawing.Point(57, 534);
-            this.lblDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(101, 23);
-            this.lblDescription.TabIndex = 84;
-            this.lblDescription.Text = "Description ";
             // 
             // label12
             // 
@@ -186,15 +167,16 @@
             this.lblBuildingID.TabIndex = 82;
             this.lblBuildingID.Text = "Building ID";
             // 
-            // dgvApartment
+            // dgvRequests
             // 
-            this.dgvApartment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvApartment.Location = new System.Drawing.Point(569, 68);
-            this.dgvApartment.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvApartment.Name = "dgvApartment";
-            this.dgvApartment.RowHeadersWidth = 51;
-            this.dgvApartment.Size = new System.Drawing.Size(917, 451);
-            this.dgvApartment.TabIndex = 74;
+            this.dgvRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRequests.Location = new System.Drawing.Point(569, 68);
+            this.dgvRequests.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvRequests.Name = "dgvRequests";
+            this.dgvRequests.RowHeadersWidth = 51;
+            this.dgvRequests.Size = new System.Drawing.Size(917, 451);
+            this.dgvRequests.TabIndex = 74;
+            this.dgvRequests.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRequests_RowHeaderMouseClick);
             // 
             // cmbClassTypeS
             // 
@@ -367,16 +349,6 @@
             this.txtMO.Size = new System.Drawing.Size(134, 29);
             this.txtMO.TabIndex = 61;
             // 
-            // txtName
-            // 
-            this.txtName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(200, 68);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtName.Name = "txtName";
-            this.txtName.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(297, 29);
-            this.txtName.TabIndex = 60;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -464,17 +436,6 @@
             this.lblCategory.TabIndex = 56;
             this.lblCategory.Text = "Parking Space";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(57, 68);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(143, 23);
-            this.label7.TabIndex = 50;
-            this.label7.Text = "Apartment Name";
-            // 
             // lblName
             // 
             this.lblName.AutoSize = true;
@@ -497,23 +458,74 @@
             this.lblProductID.TabIndex = 49;
             this.lblProductID.Text = "Apartment ID";
             // 
+            // dtReq
+            // 
+            this.dtReq.Location = new System.Drawing.Point(200, 567);
+            this.dtReq.Name = "dtReq";
+            this.dtReq.Size = new System.Drawing.Size(297, 22);
+            this.dtReq.TabIndex = 89;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(54, 566);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(119, 23);
+            this.label7.TabIndex = 81;
+            this.label7.Text = "Required Date";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(200, 607);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(297, 22);
+            this.dateTimePicker1.TabIndex = 90;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(55, 606);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(127, 23);
+            this.label13.TabIndex = 81;
+            this.label13.Text = "Lease End Date";
+            // 
+            // btnLease
+            // 
+            this.btnLease.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnLease.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnLease.Location = new System.Drawing.Point(200, 635);
+            this.btnLease.Name = "btnLease";
+            this.btnLease.Size = new System.Drawing.Size(297, 52);
+            this.btnLease.TabIndex = 88;
+            this.btnLease.Text = "Generate Lease";
+            this.btnLease.UseVisualStyleBackColor = false;
+            this.btnLease.Click += new System.EventHandler(this.btnRequest_Click);
+            // 
             // LeasingRequestManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1540, 756);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtReq);
+            this.Controls.Add(this.btnLease);
             this.Controls.Add(this.btnRequest);
             this.Controls.Add(this.dateS);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.txtDescription);
-            this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label11);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lblBuildingID);
-            this.Controls.Add(this.dgvApartment);
+            this.Controls.Add(this.dgvRequests);
             this.Controls.Add(this.cmbClassTypeS);
             this.Controls.Add(this.cmbClassType);
             this.Controls.Add(this.cmbCityS);
@@ -527,7 +539,6 @@
             this.Controls.Add(this.txtFa);
             this.Controls.Add(this.txtRf);
             this.Controls.Add(this.txtMO);
-            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.label1);
@@ -536,12 +547,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblCategory);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblProductID);
             this.Name = "LeasingRequestManage";
             this.Text = "LeasingRequestManage";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvApartment)).EndInit();
+            this.Load += new System.EventHandler(this.LeasingRequestManage_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRequests)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -552,15 +563,13 @@
         private System.Windows.Forms.Button btnRequest;
         private System.Windows.Forms.DateTimePicker dateS;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtDescription;
-        private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblBuildingID;
-        private System.Windows.Forms.DataGridView dgvApartment;
+        private System.Windows.Forms.DataGridView dgvRequests;
         private System.Windows.Forms.ComboBox cmbClassTypeS;
         private System.Windows.Forms.ComboBox cmbClassType;
         private System.Windows.Forms.ComboBox cmbCityS;
@@ -574,7 +583,6 @@
         private System.Windows.Forms.TextBox txtFa;
         private System.Windows.Forms.TextBox txtRf;
         private System.Windows.Forms.TextBox txtMO;
-        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label1;
@@ -583,8 +591,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblCategory;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblProductID;
+        private System.Windows.Forms.DateTimePicker dtReq;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnLease;
     }
 }

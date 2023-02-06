@@ -178,5 +178,10 @@ namespace E_ApartmentsManagement.UI
                 MessageBox.Show("Failed to Delete Building.");
             }
         }
+
+        private void dgvBuilding_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

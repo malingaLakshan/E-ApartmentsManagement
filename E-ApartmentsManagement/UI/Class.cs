@@ -23,6 +23,8 @@ namespace E_ApartmentsManagement.UI
         public Class()
         {
             InitializeComponent();
+            DataTable dt = classDAL.Select();
+            dgvClassType.DataSource = dt;
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

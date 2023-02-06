@@ -8,6 +8,8 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using AnyStore.UI;
 using E_ApartmentsManagement.BLL;
 using E_ApartmentsManagement.DAL;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -21,6 +23,9 @@ namespace E_ApartmentsManagement.UI
         String roleCome;
         String username;
         UserDAL UserDAL = new UserDAL();
+        UserDAL udal = new UserDAL();
+        UserBLL b = new UserBLL();
+   
         public FormUsers()
         {
             InitializeComponent();
@@ -29,13 +34,17 @@ namespace E_ApartmentsManagement.UI
             Console.WriteLine(roleCome);
             username = admindashBoard.username.Trim().ToString();
 
+
+            DataTable dt = udal.Select();
+            userTbl.DataSource = dt;
+
             //if role is CUSTOMER limit the access levels
             if (roleCome.Equals("Customer"))
             {
                 btnSave.Dispose();
-                btnUpdates.Dispose();
+                btnUpdate.Dispose();
                 btnDelete.Dispose();
-                dataGridView1.Dispose();
+                userTbl.Dispose();
                 lblSearch.Dispose();
                 txtSearch.Dispose();
 
@@ -95,7 +104,7 @@ namespace E_ApartmentsManagement.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //Gettting Data FRom UI
+    
 
             u.firstName = firstName.Text;
             u.lastName = lastName.Text;
@@ -148,6 +157,7 @@ namespace E_ApartmentsManagement.UI
             txtEmail.Text = "";
             txtUsername.Text = "";
             txtPassword.Text= "";
+            txtId.Text = "";
 
         }
 
@@ -159,6 +169,130 @@ namespace E_ApartmentsManagement.UI
         private void FormUsers_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            //Get the Keywordss from Form
+            string keywords = txtSearch.Text;
+
+            if (keywords != null)
+            {
+                //Search the products
+                DataTable dt = UserDAL.Search(keywords);
+                userTbl.DataSource = dt;
+            }
+            else
+            {
+                //Display All the products
+                DataTable dt = UserDAL.Select();
+                userTbl.DataSource = dt;
+            }
+        }
+       
+
+        private void userTbl_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //Create integer variable to know which product was clicked
+            int rowIndex = e.RowIndex;
+            //Display the Value on Respective TextBoxes
+            txtId.Text = userTbl.Rows[rowIndex].Cells[0].Value.ToString();
+            firstName.Text = userTbl.Rows[rowIndex].Cells[1].Value.ToString();
+            lastName.Text = userTbl.Rows[rowIndex].Cells[2].Value.ToString();
+            roleComboBox.Text = userTbl.Rows[rowIndex].Cells[3].Value.ToString();
+            nic.Text = userTbl.Rows[rowIndex].Cells[4].Value.ToString();
+            address.Text = userTbl.Rows[rowIndex].Cells[5].Value.ToString();
+            contact.Text = userTbl.Rows[rowIndex].Cells[6].Value.ToString();
+            radioButtonMale.Checked = true;
+            txtEmail.Text = userTbl.Rows[rowIndex].Cells[8].Value.ToString();
+            txtUsername.Text = userTbl.Rows[rowIndex].Cells[9].Value.ToString();
+            txtPassword.Text = userTbl.Rows[rowIndex].Cells[10].Value.ToString();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userTbl_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //GEt the ID of the user to be deleted
+            b.userId = int.Parse(txtId.Text);
+
+            //Create Bool Variable to Check if the user is deleted or not
+            bool success = UserDAL.Delete(b);
+
+            //If user is deleted successfully then the value of success will true else it will be false
+            if (success == true)
+            {
+                //Building Successfuly Deleted
+                MessageBox.Show("User successfully deleted.");
+                //  Clear();
+                //Refresh Data Grid View
+                DataTable dt = UserDAL.Select();
+                userTbl.DataSource = dt;
+            }
+            else
+            {
+                //Failed to Delete user
+                MessageBox.Show("Failed to Delete user.");
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            u.firstName = firstName.Text;
+            u.lastName = lastName.Text;
+
+            object b = roleComboBox.SelectedItem;
+            u.role = Convert.ToString(b);
+
+            u.nic = nic.Text;
+            u.address = address.Text;
+            u.contact = contact.Text;
+
+            bool isChecked = radioButtonMale.Checked;
+            if (isChecked)
+            {
+                u.gender = "Male";
+            }
+            else
+            {
+                u.gender = "Female";
+            }
+            u.email = txtEmail.Text;
+            u.username = txtUsername.Text;
+            u.password = txtPassword.Text;
+            u.added_date = DateTime.Now;
+            u.userId = int.Parse(txtId.Text);
+
+            /*    //Getting username of logged in user
+                string loggedUser = frmLogin.loggedIn;
+                UserBLL usr = udal.GetIDFromUsername(loggedUser);*/
+
+
+            //Create a boolean variable to check if the building is updated or not
+            bool success = UserDAL.Update(u);
+            //If the prouct is updated successfully then the value of success will be true else it will be false
+            if (success == true)
+            {
+                //Product updated Successfully
+                MessageBox.Show("Building Successfully Updated");
+                clear();
+                //REfresh the Data Grid View
+                DataTable dt = UserDAL.Select();
+                userTbl.DataSource = dt;
+            }
+            else
+            {
+                //Failed to Update Product
+                MessageBox.Show("Failed to Update Building");
+            }
         }
     }
 }
