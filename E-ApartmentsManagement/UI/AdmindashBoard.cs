@@ -211,5 +211,17 @@ namespace E_ApartmentsManagement.UI
             openChildForm(new UI.LeasingRequestManage(), sender);
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            openChildForm(new UI.LeaseExtend(), sender);
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            openChildForm(new UI.Reports(), sender);
+        }
     }
 }

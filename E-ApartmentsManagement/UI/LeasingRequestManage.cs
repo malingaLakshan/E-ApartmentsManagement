@@ -36,6 +36,7 @@ namespace E_ApartmentsManagement.UI
             loadAllRequest();
             btnLease.Enabled = false;
             btnLease.BackColor = Color.Red;
+           
 
             AdmindashBoard admindashBoard = new AdmindashBoard();
             roleCome = admindashBoard.role.Trim().ToString();
@@ -88,8 +89,11 @@ namespace E_ApartmentsManagement.UI
 
         private void dgvRequests_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+          
             //Create integer variable to know which Apartment was clicked
             int rowIndex = e.RowIndex;
+
+             requestId = int.Parse(dgvRequests.Rows[rowIndex].Cells[0].Value.ToString());
             //Display the Value on Respective TextBoxes
             txtID.Text = dgvRequests.Rows[rowIndex].Cells[2].Value.ToString();
             txtLocation.Text = dgvRequests.Rows[rowIndex].Cells[1].Value.ToString();
@@ -97,11 +101,16 @@ namespace E_ApartmentsManagement.UI
             txtFa.Text = dgvRequests.Rows[rowIndex].Cells[3].Value.ToString();
             cmbState.Text = dgvRequests.Rows[rowIndex].Cells[8].Value.ToString();
 
-            if (cmbState.Text.Equals("Approved"))
+            if (cmbState.Text.Equals("APPROVED"))
             {
                 btnLease.Enabled = true;
                 btnLease.BackColor = Color.ForestGreen;
 
+            }
+            else
+            {
+                btnLease.Enabled = false;
+                btnLease.BackColor = Color.Red;
             }
 
             //get building name from id to set the text fields
@@ -171,7 +180,50 @@ namespace E_ApartmentsManagement.UI
 
         private void btnRequest_Click(object sender, EventArgs e)
         {
+            apartmentLeaseRequest.approvalStatus = cmbState.Text;
+         
 
+            //Create a boolean variable to check if the building is updated or not
+            bool success = apartmentLeaseRequestDAL.UpdateApprovalStateByAdmin(apartmentLeaseRequest, requestId);
+            //If the prouct is updated successfully then the value of success will be true else it will be false
+            if (success == true)
+            {
+                //Product updated Successfully
+                MessageBox.Show("Approve Status Successfully Updated");
+         
+                //REfresh the Data Grid View
+                DataTable dt = apartmentLeaseRequestDAL.Select();
+                dgvRequests.DataSource = dt;
+            }
+            else
+            {
+                //Failed to Update Product
+                MessageBox.Show("Failed to Update Approve Status");
+            }
+        }
+
+        private void btnLease_Click(object sender, EventArgs e)
+        {
+            apartmentLeaseRequest.approveState = true;
+
+
+            //Create a boolean variable to check if the building is updated or not
+            bool success = apartmentLeaseRequestDAL.UpdateGenerateLeaseByAdmin(apartmentLeaseRequest, requestId);
+            //If the prouct is updated successfully then the value of success will be true else it will be false
+            if (success == true)
+            {
+                //Product updated Successfully
+                MessageBox.Show("Lease Generated Successfully");
+
+                //REfresh the Data Grid View
+                DataTable dt = apartmentLeaseRequestDAL.Select();
+                dgvRequests.DataSource = dt;
+            }
+            else
+            {
+                //Failed to Update Product
+                MessageBox.Show("Failed to Generate Lease");
+            }
         }
     }
 }

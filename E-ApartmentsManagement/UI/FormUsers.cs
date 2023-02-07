@@ -49,6 +49,7 @@ namespace E_ApartmentsManagement.UI
                 txtSearch.Dispose();
 
                 UserBLL usr = UserDAL.GetIDFromUsername(username);
+                txtId.Text = usr.userId.ToString();
                 firstName.Text = usr.firstName;
                 lastName.Text = usr.lastName;
                 roleComboBox.Text = usr.role;
@@ -269,7 +270,7 @@ namespace E_ApartmentsManagement.UI
             u.username = txtUsername.Text;
             u.password = txtPassword.Text;
             u.added_date = DateTime.Now;
-            u.userId = int.Parse(txtId.Text);
+            u.userId = int.Parse(txtId .Text);
 
             /*    //Getting username of logged in user
                 string loggedUser = frmLogin.loggedIn;

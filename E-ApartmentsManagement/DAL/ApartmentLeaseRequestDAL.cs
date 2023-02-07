@@ -170,5 +170,146 @@ namespace E_ApartmentsManagement.DAL
 
             return isSuccess;
         }
+
+        public bool UpdateApprovalStateByAdmin(ApartmentLeaseRequestBLL apartmentLeaseRequest,int id)
+        {
+            //create a boolean variable and set its initial value to false
+            bool isSuccess = false;
+
+            //Create SQL Connection for DAtabase
+            SqlConnection conn = new SqlConnection(myconnstrng);
+
+            try
+            {
+                //SQL Query to Update Data in database
+                String sql = "UPDATE apartment_lease_requests SET approval_status=@approval_status WHERE id=@id";
+
+                //Create SQL Cmmand to pass the value to query
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                //Passing the values using parameters and cmd
+                cmd.Parameters.AddWithValue("@approval_status", apartmentLeaseRequest.approvalStatus);
+                cmd.Parameters.AddWithValue("@id", id);
+
+
+                //Open the Database connection
+                conn.Open();
+
+                //Create Int Variable to check if the query is executed successfully or not
+                int rows = cmd.ExecuteNonQuery();
+
+                //if the query is executed successfully then the value of rows will be greater than 0 else it will be less than zero
+                if (rows > 0)
+                {
+                    //Query ExecutedSuccessfully
+                    isSuccess = true;
+                }
+                else
+                {
+                    //Failed to Execute Query
+                    isSuccess = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return isSuccess;
+        }
+
+        public bool UpdateGenerateLeaseByAdmin(ApartmentLeaseRequestBLL apartmentLeaseRequest,int id)
+        {
+            //create a boolean variable and set its initial value to false
+            bool isSuccess = false;
+
+            //Create SQL Connection for DAtabase
+            SqlConnection conn = new SqlConnection(myconnstrng);
+
+            try
+            {
+                //SQL Query to Update Data in database
+                String sql = "UPDATE apartment_lease_requests SET approve_state=@approve_state WHERE id=@id";
+
+                //Create SQL Cmmand to pass the value to query
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                //Passing the values using parameters and cmd
+                cmd.Parameters.AddWithValue("@approve_state", apartmentLeaseRequest.approveState);
+                cmd.Parameters.AddWithValue("@id", id);
+
+
+                //Open the Database connection
+                conn.Open();
+
+                //Create Int Variable to check if the query is executed successfully or not
+                int rows = cmd.ExecuteNonQuery();
+
+                //if the query is executed successfully then the value of rows will be greater than 0 else it will be less than zero
+                if (rows > 0)
+                {
+                    //Query ExecutedSuccessfully
+                    isSuccess = true;
+                }
+                else
+                {
+                    //Failed to Execute Query
+                    isSuccess = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return isSuccess;
+        }
+
+        public DataTable SelectAllLease(Boolean approve_state)
+        {
+            //Create Sql Connection to connect Databaes
+            SqlConnection conn = new SqlConnection(myconnstrng);
+
+            //DAtaTable to hold the data from database
+            DataTable dt = new DataTable();
+
+
+
+            try
+            {
+                //Writing the Query to Select all the Class Types from database
+                String sql = "SELECT * FROM apartment_lease_requests where approve_state=@approve_state";
+
+                //Creating SQL Command to Execute Query
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@approve_state", approve_state);
+
+                //SQL Data Adapter to hold the value from database temporarily
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                //Open DAtabase Connection
+                conn.Open();
+
+                adapter.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dt;
+        }
     }
 }

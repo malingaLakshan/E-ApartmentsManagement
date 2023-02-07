@@ -61,6 +61,7 @@
     <Compile Include="DAL\LoginDAL.cs" />
     <Compile Include="DAL\ParkingDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
+    <Compile Include="DGVPrinter.cs" />
     <Compile Include="ThemeColor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +83,24 @@
     <Compile Include="UI\Class.Designer.cs">
       <DependentUpon>Class.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ReportNearExpireLease.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportNearExpireLease.Designer.cs">
+      <DependentUpon>ReportNearExpireLease.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\reportView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\reportView.Designer.cs">
+      <DependentUpon>reportView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LeaseExtend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\LeaseExtend.Designer.cs">
+      <DependentUpon>LeaseExtend.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\LeasingRequestManage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +112,12 @@
     </Compile>
     <Compile Include="UI\ParkingSpace.Designer.cs">
       <DependentUpon>ParkingSpace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reports.Designer.cs">
+      <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UserDashboard.cs">
       <SubType>Form</SubType>
@@ -136,11 +161,23 @@
     <EmbeddedResource Include="UI\Class.resx">
       <DependentUpon>Class.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportNearExpireLease.resx">
+      <DependentUpon>ReportNearExpireLease.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\reportView.resx">
+      <DependentUpon>reportView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LeaseExtend.resx">
+      <DependentUpon>LeaseExtend.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\LeasingRequestManage.resx">
       <DependentUpon>LeasingRequestManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ParkingSpace.resx">
       <DependentUpon>ParkingSpace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UserDashboard.resx">
       <DependentUpon>UserDashboard.cs</DependentUpon>

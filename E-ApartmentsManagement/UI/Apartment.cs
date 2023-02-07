@@ -423,7 +423,7 @@ namespace E_ApartmentsManagement.UI
             {
 
                 //leaseRequest Inserted Successfully
-                MessageBox.Show("New Apartment Inserted Successfully.");
+                MessageBox.Show("New Apartment Lease Request Successfully.");
                 Clear();
                 //Refresh Data Grid View
                 DataTable dt = apartmentLeaseRequestDAL.Select();

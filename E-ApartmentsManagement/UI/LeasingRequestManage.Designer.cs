@@ -273,10 +273,10 @@
             this.cmbState.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbState.FormattingEnabled = true;
             this.cmbState.Items.AddRange(new object[] {
-            "Approved",
-            "Pending",
-            "Close",
-            "Revisit"});
+            "APPROVED",
+            "PENDING",
+            "CLOSE",
+            "ROLLBACK"});
             this.cmbState.Location = new System.Drawing.Point(200, 493);
             this.cmbState.Margin = new System.Windows.Forms.Padding(4);
             this.cmbState.Name = "cmbState";
@@ -498,22 +498,22 @@
             // 
             this.btnLease.BackColor = System.Drawing.Color.ForestGreen;
             this.btnLease.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnLease.Location = new System.Drawing.Point(200, 635);
+            this.btnLease.Location = new System.Drawing.Point(200, 647);
             this.btnLease.Name = "btnLease";
             this.btnLease.Size = new System.Drawing.Size(297, 52);
-            this.btnLease.TabIndex = 88;
+            this.btnLease.TabIndex = 91;
             this.btnLease.Text = "Generate Lease";
             this.btnLease.UseVisualStyleBackColor = false;
-            this.btnLease.Click += new System.EventHandler(this.btnRequest_Click);
+            this.btnLease.Click += new System.EventHandler(this.btnLease_Click);
             // 
             // LeasingRequestManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1540, 756);
+            this.Controls.Add(this.btnLease);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dtReq);
-            this.Controls.Add(this.btnLease);
             this.Controls.Add(this.btnRequest);
             this.Controls.Add(this.dateS);
             this.Controls.Add(this.button1);

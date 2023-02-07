@@ -133,5 +133,10 @@ namespace E_ApartmentsManagement.UI
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
